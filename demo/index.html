@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <head>
+        <title>ES Module Template</title>
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="html.style.css">
+        <script type="importmap">
+            {
+                "imports": {
+                    "@browser-modules/dictionary": "../node_modules/@browser-modules/dictionary/lib/dictionary.js",
+                    "@browser-modules/events": "../node_modules/@browser-modules/events/lib/events.js",
+                    "@browser-modules/machine": "../node_modules/@browser-modules/machine/lib/machine.js",
+                    "@browser-modules/web.component": "../node_modules/@browser-modules/web.component/lib/component.js",
+                    "@browser-modules/button.pin": "../node_modules/@browser-modules/buttons/lib/Button.Pin.js",
+                    "@browser-modules/button.minimize": "../node_modules/@browser-modules/buttons/lib/Button.Minimize.js",
+                    "@browser-modules/button.restore": "../node_modules/@browser-modules/buttons/lib/Button.Restore.js",
+                    "@browser-modules/button.close": "../node_modules/@browser-modules/buttons/lib/Button.Close.js"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <script src="index.js" type="module"></script>
+        <button-pin></button-pin>
+        <button-minimize></button-minimize>
+        <button-restore></button-restore>
+        <button-close></button-close>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+{
+    "_comments": "ES2020 adds support for dynamic imports and import.meta",
+    "compilerOptions": {
+        "module": "es2022",
+        "target": "es2022",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "inlineSources": true,
+        "baseUrl": "."
+    },
+    "include": [
+        "./src/**/*",
+        "./test/**/*"
+    ],
+    "typedocOptions" :{
+        "entryPoints":[
+            "./src/Button.metadata.ts",
+            "./src/Button.Pin.ts",
+            "./src/Button.Close.ts",
+            "./src/Button.switch.config.ts",
+            "./src/Button.push.config.ts"
+        ],
+        "excludePrivate": true,
+        "excludeProtected": true,
+        "disableSources": true,
+        "categorizeByGroup": false,
+        "sort": ["static-first", "visibility"],
+        "name" : "ES Module",
+        "hideGenerator": true,
+        "mergeModulesMergeMode": "module"
+    }
+}
