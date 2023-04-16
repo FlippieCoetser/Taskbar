@@ -72,7 +72,6 @@ export class Taskbar extends Component {
             this._emitCustomEvent(Event.ONSHOW, { visible: visible })
         })
         this.machine.on(Event.ONPIN,(state) => {
-            console.log(state)
             this.state = state
             this._emitCustomEvent(Event.ONPIN, { state: state })
         })
