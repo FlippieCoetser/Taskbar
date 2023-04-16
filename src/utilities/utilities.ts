@@ -31,4 +31,8 @@ export class Utils {
         let HTMLTemplate = <HTMLTemplateElement>document.getElementById(id)
         HTMLTemplate.remove()
     }
+    static hasSetter(instance, propertyName) {
+        const descriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(instance), propertyName);
+        return !!descriptor && typeof descriptor.set === 'function';
+    }
 }

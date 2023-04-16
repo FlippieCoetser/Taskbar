@@ -18,7 +18,8 @@
             "./src/Button.Pin.ts",
             "./src/Button.Close.ts",
             "./src/Button.switch.config.ts",
-            "./src/Button.push.config.ts"
+            "./src/Button.push.config.ts",
+            "./src/Taskbar.ts"
         ],
         "excludePrivate": true,
         "excludeProtected": true,
