@@ -76,28 +76,8 @@ export class Taskbar extends Component {
     // Imperative API Bindings
     this.onpin = () => pin.on();
     this.onunpin = () => pin.off();
-    this.onminimize = () => {
-      pin.hide();
-      minimize.hide();
-      maximize.show();
-      restore.hide();
-      close.show();
-    };
-    this.onrestore = () => {
-      pin.show();
-      minimize.show();
-      maximize.hide();
-      restore.show();
-      close.show();
-      restore.off();
-    };
-    this.onmaximize = () => {
-      pin.hide();
-      minimize.show();
-      maximize.hide();
-      restore.show();
-      close.show();
-    };
+    this.onrestore = () => restore.off();
+    this.onmaximize = () => restore.on();
 
     // UI Gesture Bindings
     pin.onon = () => this.pin();
