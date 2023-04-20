@@ -1,45 +1,26 @@
 html {
-    height: 100%;
-    /* background-image: linear-gradient(to top,rgb(55, 170, 180), rgb(9, 79, 116)) */
+  height: 100%;
+  /* background-image: linear-gradient(to top,rgb(55, 170, 180), rgb(9, 79, 116)) */
+}
+.modal {
+  position: absolute;
+  width: 400px;
+  left: 300px;
+  top: 100px;
 }
 
-
-
-button-pin {
-    position: absolute;
-    left: 50px;
-    top: 100px;
-}
-
-button-minimize {
-    position: absolute;
-    left: 100px;
-    top: 100px;
-}
-
-button-restore {
-    position: absolute;
-    left: 150px;
-    top: 100px;
-}
-
-button-close {
-    position: absolute;
-    left: 200px;
-    top: 100px;
+.modal:has([window="maximized"]) {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
 
 task-bar {
-    left: 300px;
-    top: 100px;
+  width: inherit;
 }
 
 #vertical {
-    left: 100px;
-    top: 200px;
-}
-
-app-modal {
-    left: 100px;
-    top: 100px;
+  left: 100px;
+  top: 200px;
 }

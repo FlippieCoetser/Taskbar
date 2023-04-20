@@ -14,12 +14,9 @@
     ],
     "typedocOptions" :{
         "entryPoints":[
-            "./src/Button.metadata.ts",
-            "./src/Button.Pin.ts",
-            "./src/Button.Close.ts",
-            "./src/Button.switch.config.ts",
-            "./src/Button.push.config.ts",
-            "./src/Taskbar.ts"
+            "./src/Taskbar.metadata.ts",
+            "./src/Taskbar.ts",
+            "./src/Taskbar.config.ts"
         ],
         "excludePrivate": true,
         "excludeProtected": true,

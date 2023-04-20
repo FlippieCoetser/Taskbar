@@ -83,6 +83,17 @@ export enum Event {
     ONCLOSE    = 'onclose'
 }
 
+export enum Gesture {
+    HIDE    = 'onhide',
+    SHOW    = 'onshow',
+    PIN     = 'onpin',
+    UNPIN   = 'onunpin',
+    MINIMIZE= 'onminimize',
+    MAXIMIZE= 'onmaximize',
+    RESTORE = 'onrestore',
+    CLOSE   = 'onclose'
+}
+
 /**
 * Event handler signature
 * @category Interfaces

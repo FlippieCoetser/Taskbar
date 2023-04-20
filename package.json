@@ -1,6 +1,6 @@
 {
   "name": "@browser-modules/taskbar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Taskbar Web Component using ES6 modules",
   "browser": "lib/taskbar.js",
   "main": "lib/taskbar.js",
@@ -50,10 +50,10 @@
     "typescript": "^4.7.2"
   },
   "dependencies": {
-    "@browser-modules/buttons": "^1.0.3",
+    "@browser-modules/buttons": "^1.0.6",
     "@browser-modules/dictionary": "^1.0.8",
     "@browser-modules/events": "^1.1.1",
-    "@browser-modules/machine": "^1.0.5",
+    "@browser-modules/machine": "^1.0.7",
     "@browser-modules/web.component": "^1.0.14"
   }
 }

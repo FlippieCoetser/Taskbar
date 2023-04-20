@@ -7,141 +7,148 @@
 
 import { IConfiguration } from "@browser-modules/machine";
 
-import * as Taskbar from "./Taskbar.metadata.js"
+import { Attribute   } from "./Taskbar.metadata.js"
+import { States      } from "./Taskbar.metadata.js"
+import { Visible     } from "./Taskbar.metadata.js"
+import { State       } from "./Taskbar.metadata.js"
+import { Event       } from "./Taskbar.metadata.js"
+import { Operation   } from "./Taskbar.metadata.js"
+import { Window      } from "./Taskbar.metadata.js"
+import { Orientation } from "./Taskbar.metadata.js"
 
 export const Configuration: 
     IConfiguration<
-        Taskbar.Attribute,
-        Taskbar.States,
-        Taskbar.Event> = {
+        Attribute,
+        States,
+        Event> = {
     type: 'parallel',
     states :{
-        [Taskbar.Attribute.VISIBLE]:{
-            initial: Taskbar.Visible.YES,
+        visible:{
+            initial: Visible.YES,
             states: {
-                [Taskbar.Visible.YES]:{
+                yes:{
                     on:{
-                        [Taskbar.Event.ONHIDE]: {
-                            target: Taskbar.Visible.NO,
-                            actions: [Taskbar.Operation.HIDE]
+                        onhide: {
+                            target: Visible.NO,
+                            actions: [Operation.HIDE]
                         }
                     }
                 },
-                [Taskbar.Visible.NO]:{
+                no:{
                     on:{
-                        [Taskbar.Event.ONSHOW]: {
-                            target: Taskbar.Visible.YES,
-                            actions: [Taskbar.Operation.SHOW]
+                        onshow: {
+                            target: Visible.YES,
+                            actions: [Operation.SHOW]
                         }
                     }
                 }
             }
         },
-        [Taskbar.Attribute.ORIENTATION]:{
-            initial: Taskbar.Orientation.HORIZONTAL,
+        orientation:{
+            initial: Orientation.HORIZONTAL,
             states: {
-                [Taskbar.Orientation.HORIZONTAL]: {
+                horizontal: {
                     on: {
 
                     }
                 },
-                [Taskbar.Orientation.VERTICAL]: {
+                vertical: {
                     on: {
 
                     }
                 }
             }
         },
-        [Taskbar.Attribute.STATE]: {
-            initial: Taskbar.State.UNPINNED,
+        state: {
+            initial: State.UNPINNED,
             states: {
-                [Taskbar.State.UNPINNED]: {
+                unpinned: {
                     on: {
-                        [Taskbar.Event.ONPIN]: {
-                            target: Taskbar.State.PINNED,
-                            actions: [Taskbar.Operation.PIN]
+                        onpin: {
+                            target: State.PINNED,
+                            actions: [Operation.PIN]
                         }
                     }
                 },
-                [Taskbar.State.PINNED]: {
+                pinned: {
                     on: {
-                        [Taskbar.Event.ONUNPIN]: {
-                            target: Taskbar.State.UNPINNED,
-                            actions: [Taskbar.Operation.UNPIN]
+                        onunpin: {
+                            target: State.UNPINNED,
+                            actions: [Operation.UNPIN]
                         }
                     }
                 }
             }
         },
-        [Taskbar.Attribute.WINDOW]:{ 
-            initial: Taskbar.Window.NORMAL,
+        window:{ 
+            initial: Window.NORMAL,
             states: {
-                [Taskbar.Window.NORMAL]: {
+                normal: {
                     on: {
-                        [Taskbar.Event.ONMINIMIZE]: {
-                            target: Taskbar.Window.MINIMIZED,
-                            actions: [Taskbar.Operation.MINIMIZE]
+                        onminimize: {
+                            target: Window.MINIMIZED,
+                            actions: [Operation.MINIMIZE]
                         },
-                        [Taskbar.Event.ONMAXIMIZE]: {
-                            target: Taskbar.Window.MAXIMIZED,
-                            actions: [Taskbar.Operation.MAXIMIZE]
+                        onmaximize: {
+                            target: Window.MAXIMIZED,
+                            actions: [Operation.MAXIMIZE]
                         },
-                        [Taskbar.Event.ONCLOSE]: {
-                            target: Taskbar.Window.CLOSED,
-                            actions: [Taskbar.Operation.CLOSE]
+                        onclose: {
+                            target: Window.CLOSED,
+                            actions: [Operation.CLOSE]
                         }
                     }
                 },
-                [Taskbar.Window.MINIMIZED]: {
+                minimized: {
                     on: {
-                        [Taskbar.Event.ONRESTORE]: {
-                            target: Taskbar.Window.NORMAL,
-                            actions: [Taskbar.Operation.RESTORE]
+                        onrestore: {
+                            target: Window.NORMAL,
+                            actions: [Operation.RESTORE]
                         },
-                        [Taskbar.Event.ONCLOSE]: {
-                            target: Taskbar.Window.CLOSED,
-                            actions: [Taskbar.Operation.CLOSE]
+                        onclose: {
+                            target: Window.CLOSED,
+                            actions: [Operation.CLOSE]
                         }
                     }
                 },
-                [Taskbar.Window.MAXIMIZED]: {
+                maximized: {
                     on: {
-                        [Taskbar.Event.ONMINIMIZE]: {
-                            target: Taskbar.Window.MINIMIZED,
-                            actions: [Taskbar.Operation.MINIMIZE]
+                        onminimize: {
+                            target: Window.MINIMIZED,
+                            actions: [Operation.MINIMIZE]
                         },
-                        [Taskbar.Event.ONRESTORE]: {
-                            target: Taskbar.Window.NORMAL,
-                            actions: [Taskbar.Operation.RESTORE]
+                        onrestore: {
+                            target: Window.NORMAL,
+                            actions: [Operation.RESTORE]
                         },
-                        [Taskbar.Event.ONCLOSE]: {
-                            target: Taskbar.Window.CLOSED,
-                            actions: [Taskbar.Operation.CLOSE]
+                        onclose: {
+                            target: Window.CLOSED,
+                            actions: [Operation.CLOSE]
                         }
                     }
                 },
-                [Taskbar.Window.CLOSED]: {
+                closed: {
                     on:{}
                 }
             } 
         }
     },
     actions: {
-        [Taskbar.Operation.HIDE]:(machine, state, ...args) => 
-            machine.emit(Taskbar.Event.ONHIDE, state, ...args),
-        [Taskbar.Operation.SHOW]:(machine, state, ...args) => 
-            machine.emit(Taskbar.Event.ONSHOW, state, ...args),
-        [Taskbar.Operation.PIN]:(machine, state, ...args) => 
-            machine.emit(Taskbar.Event.ONPIN, state, ...args),
-        [Taskbar.Operation.UNPIN]:(machine, state, ...args) => 
-            machine.emit(Taskbar.Event.ONUNPIN, state, ...args),
-        [Taskbar.Operation.MINIMIZE]:(machine, state, ...args) => 
-            machine.emit(Taskbar.Event.ONMINIMIZE, state, ...args),
-        [Taskbar.Operation.MAXIMIZE]:(machine, state, ...args) => 
-            machine.emit(Taskbar.Event.ONMAXIMIZE, state, ...args),
-        [Taskbar.Operation.RESTORE]:(machine, state, ...args) => 
-            machine.emit(Taskbar.Event.ONRESTORE, state, ...args),
-        [Taskbar.Operation.CLOSE]:(machine, state, ...args) => 
-            machine.emit(Taskbar.Event.ONCLOSE, state, ...args)
+        hide:(machine, state, ...args) => 
+            machine.emit(Event.ONHIDE, state, ...args),
+        show:(machine, state, ...args) => 
+            machine.emit(Event.ONSHOW, state, ...args),
+        pin:(machine, state, ...args) => 
+            machine.emit(Event.ONPIN, state, ...args),
+        unpin:(machine, state, ...args) => 
+            machine.emit(Event.ONUNPIN, state, ...args),
+        minimize:(machine, state, ...args) => 
+            machine.emit(Event.ONMINIMIZE, state, ...args),
+        maximize:(machine, state, ...args) => 
+            machine.emit(Event.ONMAXIMIZE, state, ...args),
+        restore:(machine, state, ...args) => 
+            machine.emit(Event.ONRESTORE, state, ...args),
+        close:(machine, state, ...args) => 
+            machine.emit(Event.ONCLOSE, state, ...args)
     }
 }
