@@ -1,6 +1,6 @@
 {
   "name": "@browser-modules/taskbar",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Taskbar Web Component using ES6 modules",
   "browser": "lib/taskbar.js",
   "main": "lib/taskbar.js",
