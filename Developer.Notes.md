@@ -15,7 +15,7 @@ import { Component } from "@browser-modules/web.component";
 export class Taskbar extends Component {}
 ```
 
-HTML Template
+HTML Template with a reference to an external style sheet for easy customization
 
 ```html
 <template id="task-bar">
@@ -29,7 +29,7 @@ HTML Template
 </template>
 ```
 
-Style Template
+Default Style Sheet
 
 ```css
 /* Default Component Style */
@@ -76,48 +76,99 @@ button-close {
 }
 ```
 
-1. Add Templates
-2. Define and Test Metadata
+### Data Binding between Components
 
+Data binding between parent: Taskbar, and child: Pin, Minimize, Maximize, Restore and Close is defined inside the `_render` function as show below:
+
+```typescript
+  protected _render = () => {
+    let pin = this.root.querySelector("button-pin") as Pin;
+    let minimize = this.root.querySelector("button-minimize") as Minimize;
+    let maximize = this.root.querySelector("button-maximize") as Maximize;
+    let restore = this.root.querySelector("button-restore") as Restore;
+    let close = this.root.querySelector("button-close") as Close;
+
+    // Imperative API Bindings
+    this.onpin = () => pin.on();
+    this.onunpin = () => pin.off();
+    this.onrestore = () => restore.off();
+    this.onmaximize = () => restore.on();
+
+    // UI Gesture Bindings
+    pin.onon = () => this.pin();
+    pin.onoff = () => this.unpin();
+    minimize.ondown = () => this.minimize();
+    maximize.ondown = () => this.restore();
+    restore.onon = () => this.maximize();
+    restore.onoff = () => this.restore();
+    close.ondown = () => this.close();
+  };
 ```
 
-// Imperative API Bindings
-window.taskbar.onpin      = () => window.pin.on()
-window.taskbar.onunpin    = () => window.pin.off()
-window.taskbar.onminimize = () => {
-    window.pin.hide()
-    window.minimize.hide()
-    window.maximize.show()
-    window.restore.hide()
-    window.close.show()
-}
-window.taskbar.onrestore  = () => {
-    window.pin.show()
-    window.minimize.show()
-    window.maximize.hide()
-    window.restore.show()
-    window.close.show()
-    window.restore.off()
-}
-window.taskbar.onmaximize = () => {
-    window.pin.hide()
-    window.minimize.show()
-    window.maximize.hide()
-    window.restore.show()
-    window.close.show()
+TODO: The implement a safety check to ensure all child components have been loaded and is available to engage with. Below is a suggested approach to investigate:
+
+When dealing with nested custom elements where each element has its own `connectedCallback`, you'll want to ensure that the child elements have completed their `connectedCallback` before accessing them in the parent.
+
+To accomplish this, you can use the `window.customElements.whenDefined(name)` function inside the parent's `connectedCallback`. This function returns a promise that resolves when the specified custom element is defined.
+
+## Example
+
+```javascript
+// child-element.js
+class ChildElement extends HTMLElement {
+  constructor() {
+    super();
+    this.textContent = "Child element content";
+  }
+
+  connectedCallback() {
+    console.log("Child element connected");
+  }
 }
 
+customElements.define("child-element", ChildElement);
 
-// UI Gesture Bindings
-window.pin.onon        = () => window.taskbar.pin()
-window.pin.onoff       = () => window.taskbar.unpin()
-window.minimize.ondown = () => window.taskbar.minimize()
-window.maximize.ondown = () => window.taskbar.restore()
-window.restore.onon    = () => window.taskbar.maximize()
-window.restore.onoff   = () => window.taskbar.restore()
+// parent-element.js
+class ParentElement extends HTMLElement {
+  constructor() {
+    super();
+  }
 
+  async connectedCallback() {
+    // Wait for the child element to be defined
+    await customElements.whenDefined("child-element");
 
+    // Access the child elements when they have completed their connectedCallback
+    const childElement = this.querySelector("child-element");
+    if (childElement) {
+      console.log("Child element in parent:", childElement.textContent);
+    } else {
+      console.log("Child element not found in parent.");
+    }
+  }
+}
+
+customElements.define("parent-element", ParentElement);
 ```
+
+```html
+<parent-element>
+  <child-element></child-element>
+</parent-element>
+```
+
+In this example, the ParentElement uses customElements.whenDefined('child-element') inside its connectedCallback to wait for the ChildElement to be defined before accessing it. This ensures that the child element has completed its connectedCallback before the parent element tries to interact with it.
+
+For general advice when dealing with nested custom elements and establishing bindings between parent and child elements, consider the following:
+
+1. Use connectedCallback to set up bindings or interactions between parent and child elements.
+2. Use window.customElements.whenDefined(name) to ensure the child element is defined and has completed its connectedCallback before interacting with it.
+3. If the child elements can change dynamically, consider using a MutationObserver to watch for changes in the child elements and update bindings accordingly.
+4. When setting up bindings, consider using custom events to communicate between parent and child elements. This can help decouple the components and make them more reusable.
+
+#### Notes:
+
+Unit Testing Framework: Wallaby, generate a html file including scripts which is used in a headless chrome browser by Karma Test Runner to run realtime test. The example below has importmaps injected before test are executed. Note: Importmaps is used to for direct module reference, NPM Packages are used
 
 ```html
 <script>
