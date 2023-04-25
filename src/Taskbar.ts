@@ -9,15 +9,14 @@ import { Minimize } from "@browser-modules/buttons";
 import { Maximize } from "@browser-modules/buttons";
 import { Restore } from "@browser-modules/buttons";
 import { Close } from "@browser-modules/buttons";
-import { Attribute } from "./Taskbar.metadata.js";
-import { Visible } from "./Taskbar.metadata.js";
-import { State } from "./Taskbar.metadata.js";
-import { Orientation } from "./Taskbar.metadata.js";
-import { Window } from "./Taskbar.metadata.js";
-import { Event } from "./Taskbar.metadata.js";
+
+import { Attribute, Attributes } from "./Taskbar.metadata.js";
+import { Visible, Visibility } from "./Taskbar.metadata.js";
+import { State, States } from "./Taskbar.metadata.js";
+import { Orientation, Orientations } from "./Taskbar.metadata.js";
+import { Window, Windows } from "./Taskbar.metadata.js";
+import { Event, Events } from "./Taskbar.metadata.js";
 import { Handler } from "./Taskbar.metadata.js";
-import { States } from "./Taskbar.metadata.js";
-import { Gesture } from "./Taskbar.metadata.js";
 import { Configuration } from "./Taskbar.config.js";
 
 /**
@@ -36,27 +35,27 @@ export class Taskbar extends Component {
    * @hidden
    */
   public configuration = Configuration;
-  public machine = new Machine<Attribute, States, Event>(Configuration);
+  public machine = new Machine<Attributes, Events>(Configuration);
 
   /**
    * Default visibility is `yes`
    */
-  private _visible: Visible = Visible.YES;
+  private _visible: Visibility = Visible.YES;
 
   /**
    * Default state is `unpinned`
    */
-  private _state: State = State.UNPINNED;
+  private _state: States = State.UNPINNED;
 
   /**
    * Default orientation is `horizontal`
    */
-  private _orientation: Orientation = Orientation.HORIZONTAL;
+  private _orientation: Orientations = Orientation.HORIZONTAL;
 
   /**
    * Default window is `normal`
    */
-  private _window: Window = Window.NORMAL;
+  private _window: Windows = Window.NORMAL;
 
   /**
    * @hidden
@@ -132,10 +131,10 @@ export class Taskbar extends Component {
   /**
    * @category State
    */
-  public get visible(): Visible {
-    return <Visible>this.getAttribute(Attribute.VISIBLE) ?? this._visible;
+  public get visible(): Visibility {
+    return <Visibility>this.getAttribute(Attribute.VISIBLE) ?? this._visible;
   }
-  public set visible(visible: Visible) {
+  public set visible(visible: Visibility) {
     this._visible = visible;
     visible == Visible.YES && this.removeAttribute(Attribute.VISIBLE);
     visible == Visible.NO && this.setAttribute(Attribute.VISIBLE, visible);
@@ -145,10 +144,10 @@ export class Taskbar extends Component {
    * Takes any value of the State enumeration
    * @category State
    */
-  public get state(): State {
-    return <State>(<unknown>this.getAttribute(Attribute.STATE)) ?? this._state;
+  public get state(): States {
+    return <States>(<unknown>this.getAttribute(Attribute.STATE)) ?? this._state;
   }
-  private set state(state: State) {
+  private set state(state: States) {
     this._state = state;
     this.setAttribute(Attribute.STATE, <string>(<unknown>state));
   }
@@ -157,12 +156,12 @@ export class Taskbar extends Component {
    * Takes any value of the State enumeration
    * @category State
    */
-  public get window(): Window {
+  public get window(): Windows {
     return (
-      <Window>(<unknown>this.getAttribute(Attribute.WINDOW)) ?? this._window
+      <Windows>(<unknown>this.getAttribute(Attribute.WINDOW)) ?? this._window
     );
   }
-  private set window(window: Window) {
+  private set window(window: Windows) {
     this._window = window;
     this.setAttribute(Attribute.WINDOW, <string>(<unknown>window));
   }
@@ -171,13 +170,13 @@ export class Taskbar extends Component {
    * Takes any value of the State enumeration
    * @category State
    */
-  public get orientation(): Orientation {
+  public get orientation(): Orientations {
     return (
-      <Orientation>(<unknown>this.getAttribute(Attribute.ORIENTATION)) ??
+      <Orientations>(<unknown>this.getAttribute(Attribute.ORIENTATION)) ??
       this._orientation
     );
   }
-  private set orientation(orientation: Orientation) {
+  private set orientation(orientation: Orientations) {
     this._orientation = orientation;
     this.setAttribute(Attribute.ORIENTATION, <string>(<unknown>orientation));
   }

@@ -1,11 +1,11 @@
 // @category Metadata: Components
-import { Tag } from "../node_modules/@browser-modules/web.component/lib/enums/enum.tag.js";
+import { Tag } from "../node_modules/@browser-modules/component.library/lib/tag.js";
 describe("Given Tag imported", () => {
   it("then Tag should be defined", () => {
     expect(Tag).toBeDefined();
   });
   it("then Tag.Taskbar should be defined", () => {
-    expect(Tag.Taskbar).toBeDefined();
+    expect(Tag.TASKBAR).toBeDefined();
   });
 });
 
@@ -270,7 +270,7 @@ describe("Given all dependency html templates have been loaded", () => {
       expect(Taskbar).toBeDefined();
     });
     it("Then Taskbar.tag should be Tag.Taskbar", () => {
-      expect(Taskbar.tag).toBe(Tag.Taskbar);
+      expect(Taskbar.tag).toBe(Tag.TASKBAR);
     });
     it("Then Taskbar.attributes should be Attribute", () => {
       expect(Taskbar.attributes).toBe(Attribute);
@@ -289,10 +289,10 @@ describe("Given all dependency html templates have been loaded", () => {
       });
       describe("Given HTML Template added to DOM", () => {
         beforeEach(() => {
-          Utils.appendTemplate(Tag.Taskbar, templates.taskbar);
+          Utils.appendTemplate(Tag.TASKBAR, templates.taskbar);
         });
         afterEach(() => {
-          Utils.removeTemplate(Tag.Taskbar);
+          Utils.removeTemplate(Tag.TASKBAR);
         });
         it("Then a HTML Template should be available in DOM", () => {
           expect(document.querySelectorAll("#task-bar")).toHaveSize(1);
@@ -300,7 +300,7 @@ describe("Given all dependency html templates have been loaded", () => {
         describe("When Taskbar component added to DOM", () => {
           let taskbar: Taskbar;
           beforeEach(() => {
-            taskbar = Utils.appendComponent<Taskbar>(Tag.Taskbar);
+            taskbar = Utils.appendComponent<Taskbar>(Tag.TASKBAR);
           });
           afterEach(() => {
             taskbar.remove();
