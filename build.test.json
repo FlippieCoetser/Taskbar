@@ -10,11 +10,7 @@
   },
   "include": ["./src/**/*", "./test/**/*"],
   "typedocOptions": {
-    "entryPoints": [
-      "./src/Taskbar.metadata.ts",
-      "./src/Taskbar.ts",
-      "./src/Taskbar.config.ts"
-    ],
+    "entryPoints": ["./src/index.ts"],
     "categoryOrder": [
       "Component",
       "Attributes",
