@@ -1,5 +1,5 @@
 # Taskbar
 
-ES6 Native Web Component
+A browser native web component with generic modal and taskbar functionality.
 
-[API Documentation](https://flippiecoetser.github.io/Taskbar/modules.html)
+[API](https://flippiecoetser.github.io/Taskbar/modules/Taskbar.html)
