@@ -49,7 +49,7 @@ export const State = {
 export type States = (typeof State)[keyof typeof State];
 
 /**
- * @category Metadata: Orientation
+ * @category Metadata: State
  * @enum
  */
 export const Orientation = {
@@ -57,12 +57,12 @@ export const Orientation = {
   VERTICAL: "vertical",
 } as const;
 /**
- * @category Metadata: Orientation
+ * @category Metadata: State
  */
 export type Orientations = (typeof Orientation)[keyof typeof Orientation];
 
 /**
- * @category Metadata: Window
+ * @category Metadata: State
  * @enum
  */
 export const Window = {
@@ -72,7 +72,7 @@ export const Window = {
   CLOSED: "closed",
 };
 /**
- * @category Metadata: Window
+ * @category Metadata: State
  */
 export type Windows = (typeof Window)[keyof typeof Window];
 
@@ -135,6 +135,6 @@ export type Gestures = (typeof Gesture)[keyof typeof Gesture];
 
 /**
  * Event handler signature
- * @category Interfaces
+ * @category Metadata: Behavior
  */
 export type Handler = (...args: any[]) => void;

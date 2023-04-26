@@ -20,7 +20,7 @@ import { Handler } from "./Taskbar.metadata.js";
 import { Configuration } from "./Taskbar.config.js";
 
 /**
- * @category Components
+ * @category Component
  */
 export class Taskbar extends Component {
   /**

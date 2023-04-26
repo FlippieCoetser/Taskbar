@@ -1,6 +1,6 @@
 {
   "name": "@browser-modules/taskbar",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Taskbar Web Component using ES6 modules",
   "browser": "lib/Taskbar.js",
   "main": "lib/Taskbar.js",
@@ -34,7 +34,6 @@
   },
   "homepage": "https://github.com/FlippieCoetser/taskbar#readme",
   "devDependencies": {
-    "@knodes/typedoc-plugin-pages": "^0.22.5",
     "@types/jasmine": "^4.0.3",
     "http-server": "^14.1.0",
     "jasmine": "^4.1.0",
@@ -44,10 +43,10 @@
     "karma-coverage-istanbul-reporter": "^3.0.3",
     "karma-jasmine": "^5.0.1",
     "karma-spec-reporter": "0.0.34",
-    "typedoc": "^0.22.15",
-    "typedoc-plugin-merge-modules": "^3.1.0",
-    "typedoc-plugin-mermaid": "^1.8.0",
-    "typescript": "^4.7.2"
+    "typedoc": "^0.24.6",
+    "typedoc-plugin-merge-modules": "^4.1.0",
+    "typedoc-vscode-theme": "^1.0.4",
+    "typescript": "^5.0.4"
   },
   "dependencies": {
     "@browser-modules/buttons": "^1.0.8",

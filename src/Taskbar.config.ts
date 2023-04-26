@@ -1,7 +1,9 @@
 /**
- * It is not possible to pass information into a web component constructor.
- * This is a know limitation of web components.
- * The configuration of the web component is therefore set via a public `configuration` property.
+ * The configuration of the web component is set via a public {@link Configuration} property.
+ *
+ * Note: Web Components are automatically instantiated by the browser.
+ * Dependency injection, to load a configuration via the constructor, is not possible.
+ * This limitation is by design and spec. Hence, the configuration is set via a public property.
  * @module Taskbar
  */
 
@@ -14,6 +16,9 @@ import { Operation } from "./Taskbar.metadata.js";
 import { Window } from "./Taskbar.metadata.js";
 import { Orientation } from "./Taskbar.metadata.js";
 
+/**
+ * @category Component
+ */
 export const Configuration = {
   type: "parallel",
   states: {
