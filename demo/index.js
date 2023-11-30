@@ -25,3 +25,6 @@ console.log("Components: Defined");
 
 window.taskbar = document.querySelector("task-bar");
 console.log("Components: Loaded");
+
+import json from "../lib/data.json" assert { type: "json" };
+import css from "../lib/css/Taskbar.style.css" assert { type: "css" };
